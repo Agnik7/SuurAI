@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Play, Headphones, Sparkles, ArrowRight } from 'lucide-react'
+import { Play, Headphones, Sparkles, ArrowRight, Mic } from 'lucide-react'
 
 export default function Landing() {
   return (
@@ -25,21 +25,21 @@ export default function Landing() {
           <div className="text-center">
             <div className="mb-8">
               <span className="inline-block px-6 py-3 bg-purple-500/10 backdrop-blur-sm border border-purple-500/20 rounded-full text-purple-300 text-sm font-medium mb-8">
-                🎵 AI-Powered Music Discovery
+                🎙️ AI-Powered Podcast Discovery
               </span>
             </div>
             
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
               <span className="bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent animate-pulse">
-                Discover Music
+                Discover Podcasts
               </span>
               <br />
               <span className="text-white drop-shadow-2xl">Through Your Mood</span>
             </h1>
             
             <p className="text-xl sm:text-2xl text-slate-300 mb-12 max-w-4xl mx-auto leading-relaxed font-light">
-              Tell us how you're feeling or what you're doing, and let our AI find the perfect soundtrack for your moment. 
-              <span className="text-purple-300 font-medium"> Experience music like never before.</span>
+              Tell us how you're feeling or what you're doing, and let our AI find the perfect podcast content for your moment. 
+              <span className="text-purple-300 font-medium"> Experience podcasts like never before.</span>
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
@@ -71,7 +71,7 @@ export default function Landing() {
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-blue-400 mx-auto mb-6"></div>
             <p className="text-xl text-slate-300 font-light">
-              Three simple steps to your perfect playlist
+              Three simple steps to your perfect podcast queue
             </p>
           </div>
           
@@ -79,7 +79,7 @@ export default function Landing() {
             <div className="group text-center p-10 rounded-3xl glass-card hover:border-purple-500/50 transition-all duration-500 transform hover:-translate-y-2">
               <div className="relative mb-8">
                 <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center mx-auto shadow-2xl group-hover:scale-110 transition-transform">
-                  <Headphones className="h-10 w-10 text-white" />
+                  <Mic className="h-10 w-10 text-white" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity mx-auto w-20 h-20"></div>
               </div>
@@ -87,7 +87,7 @@ export default function Landing() {
                 Describe Your Mood
               </h3>
               <p className="text-slate-400 leading-relaxed text-lg">
-                Type or speak naturally: "I need chill beats for evening coding" or "upbeat workout music"
+                Type or speak naturally: "I need productivity podcasts for focused work" or "motivational business content"
               </p>
             </div>
             
@@ -130,12 +130,12 @@ export default function Landing() {
         <div className="relative max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <div className="glass-card rounded-3xl p-12 shadow-2xl">
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-8 drop-shadow-xl">
-              Ready to Find Your Sound?
+              Ready to Find Your Voice?
             </h2>
             <p className="text-xl text-slate-300 mb-10 font-light leading-relaxed">
-              Join thousands of music lovers discovering their perfect soundtrack. 
+              Join thousands of podcast lovers discovering their perfect content. 
               <br className="hidden sm:block" />
-              <span className="text-purple-300 font-medium">Your next favorite song is just a mood away.</span>
+              <span className="text-purple-300 font-medium">Your next favorite episode is just a mood away.</span>
             </p>
             <Link 
               to="/login"

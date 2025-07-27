@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { User, Mail, Lock, Eye, EyeOff, Music } from 'lucide-react'
+import { User, Mail, Lock, Eye, EyeOff, Mic } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 
 export default function Signup() {
@@ -65,7 +65,7 @@ export default function Signup() {
           <div className="text-center">
             <div className="flex items-center justify-center space-x-3 mb-6">
               <div className="relative">
-                <Music className="h-12 w-12 text-purple-400" />
+                <Mic className="h-12 w-12 text-purple-400" />
                 <div className="absolute inset-0 bg-purple-400/20 rounded-lg blur-lg"></div>
               </div>
               <span className="text-3xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
@@ -73,7 +73,7 @@ export default function Signup() {
               </span>
             </div>
             <h2 className="text-3xl font-bold text-white mb-2">Join SuurAI</h2>
-            <p className="text-slate-400">Create your account to start discovering music</p>
+            <p className="text-slate-400">Create your account to start discovering podcasts</p>
           </div>
 
           {/* Signup Form */}

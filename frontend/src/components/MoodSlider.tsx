@@ -3,21 +3,21 @@ import { Volume2, Zap, Coffee, Sun } from 'lucide-react'
 
 interface MoodSliderProps {
   onEnergyChange: (energy: number) => void
-  onGenreChange: (genre: string) => void
+  onGenreChange: (category: string) => void
 }
 
 export default function MoodSlider({ onEnergyChange, onGenreChange }: MoodSliderProps) {
   const [energy, setEnergy] = useState(50)
-  const [selectedGenre, setSelectedGenre] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('')
 
   const handleEnergyChange = (value: number) => {
     setEnergy(value)
     onEnergyChange(value)
   }
 
-  const genres = [
-    'Electronic', 'Indie', 'Jazz', 'Hip-Hop', 'Rock', 'Classical', 
-    'Pop', 'R&B', 'Alternative', 'Ambient'
+  const categories = [
+    'Technology', 'Business', 'Comedy', 'True Crime', 'Education', 'Health', 
+    'Science', 'History', 'Sports', 'News'
   ]
 
   const getEnergyIcon = () => {
@@ -28,10 +28,10 @@ export default function MoodSlider({ onEnergyChange, onGenreChange }: MoodSlider
   }
 
   const getEnergyLabel = () => {
-    if (energy < 25) return 'Chill'
-    if (energy < 50) return 'Relaxed'
-    if (energy < 75) return 'Upbeat'
-    return 'Energetic'
+    if (energy < 25) return 'Background'
+    if (energy < 50) return 'Casual'
+    if (energy < 75) return 'Engaging'
+    return 'Intense'
   }
 
   return (
@@ -43,7 +43,7 @@ export default function MoodSlider({ onEnergyChange, onGenreChange }: MoodSlider
       {/* Energy Slider */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-3">
-          <label className="text-sm font-medium text-slate-300">Energy Level</label>
+          <label className="text-sm font-medium text-slate-300">Engagement Level</label>
           <div className="flex items-center space-x-2 text-purple-400">
             {getEnergyIcon()}
             <span className="text-sm font-medium">{getEnergyLabel()}</span>
@@ -69,27 +69,27 @@ export default function MoodSlider({ onEnergyChange, onGenreChange }: MoodSlider
         </div>
       </div>
 
-      {/* Genre Filter */}
+      {/* Category Filter */}
       <div>
         <label className="text-sm font-medium text-slate-300 mb-3 block">
-          Genre Focus (Optional)
+          Category Focus (Optional)
         </label>
         <div className="flex flex-wrap gap-3">
-          {genres.map((genre) => (
+          {categories.map((category) => (
             <button
-              key={genre}
+              key={category}
               onClick={() => {
-                const newGenre = selectedGenre === genre ? '' : genre
-                setSelectedGenre(newGenre)
-                onGenreChange(newGenre)
+                const newCategory = selectedCategory === category ? '' : category
+                setSelectedCategory(newCategory)
+                onGenreChange(newCategory)
               }}
               className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 transform hover:scale-105 shadow-lg ${
-                selectedGenre === genre
+                selectedCategory === category
                   ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-purple-500/25'
                   : 'bg-slate-700/50 text-slate-300 hover:bg-slate-600/50 hover:text-white border border-slate-600/50'
               }`}
             >
-              {genre}
+              {category}
             </button>
           ))}
         </div>

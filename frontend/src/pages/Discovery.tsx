@@ -26,19 +26,19 @@ export default function Discovery() {
     // Mock voice input
     if (!isListening) {
       setTimeout(() => {
-        setQuery("I need chill beats for evening coding")
+        setQuery("I need productivity podcasts for focused work")
         setIsListening(false)
       }, 2000)
     }
   }
 
   const quickPrompts = [
-    "Upbeat workout music",
-    "Relaxing study playlist",
-    "Party vibes for dancing",
-    "Melancholic indie songs",
-    "Focus music for deep work",
-    "Happy morning tunes"
+    "Motivational business podcasts",
+    "Educational science deep-dives",
+    "Comedy podcasts for laughs",
+    "True crime mysteries",
+    "Productivity and focus tips",
+    "Inspiring morning talks"
   ]
 
   return (
@@ -68,7 +68,7 @@ export default function Discovery() {
           </h1>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
             Describe how you're feeling, what you're doing, or the vibe you want. 
-            <span className="text-purple-300 font-medium"> Our AI will find the perfect music to match.</span>
+            <span className="text-purple-300 font-medium"> Our AI will find the perfect podcasts to match.</span>
           </p>
         </div>
 
@@ -83,7 +83,7 @@ export default function Discovery() {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Type or speak your mood... e.g., 'I need chill beats for evening coding'"
+                placeholder="Type or speak your mood... e.g., 'I need productivity podcasts for focused work'"
                 className="flex-1 bg-transparent text-white placeholder-slate-400 px-6 py-8 text-lg focus:outline-none"
                 disabled={isProcessing}
               />
@@ -173,19 +173,19 @@ export default function Discovery() {
             <ul className="space-y-4 text-slate-300">
               <li className="flex items-start space-x-3">
                 <span className="w-2 h-2 bg-purple-400 rounded-full mt-3 flex-shrink-0"></span>
-                <span className="text-lg leading-relaxed">Be specific about your activity: "studying", "working out", "relaxing"</span>
+                <span className="text-lg leading-relaxed">Be specific about your activity: "working", "learning", "commuting"</span>
               </li>
               <li className="flex items-start space-x-3">
                 <span className="w-2 h-2 bg-blue-400 rounded-full mt-3 flex-shrink-0"></span>
-                <span className="text-lg leading-relaxed">Include energy level: "upbeat", "mellow", "energetic", "calm"</span>
+                <span className="text-lg leading-relaxed">Include engagement level: "deep-dive", "casual listening", "background audio"</span>
               </li>
               <li className="flex items-start space-x-3">
                 <span className="w-2 h-2 bg-cyan-400 rounded-full mt-3 flex-shrink-0"></span>
-                <span className="text-lg leading-relaxed">Mention genres you like: "indie", "electronic", "jazz", "hip-hop"</span>
+                <span className="text-lg leading-relaxed">Mention topics you like: "business", "technology", "comedy", "true crime"</span>
               </li>
               <li className="flex items-start space-x-3">
                 <span className="w-2 h-2 bg-purple-400 rounded-full mt-3 flex-shrink-0"></span>
-                <span className="text-lg leading-relaxed">Describe the setting: "coffee shop vibes", "late night", "sunny morning"</span>
+                <span className="text-lg leading-relaxed">Describe the duration: "short episodes", "long interviews", "bite-sized content"</span>
               </li>
             </ul>
           </div>

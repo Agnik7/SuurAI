@@ -4,122 +4,140 @@ import { Plus, Play, Heart, Share, ChevronLeft, ChevronRight, ArrowLeft } from '
 import MoodSlider from '../components/MoodSlider'
 import ContextCard from '../components/ContextCard'
 
-interface Track {
+interface Episode {
   id: string
   title: string
-  artist: string
-  album: string
-  albumArt: string
+  podcastName: string
+  host: string
+  thumbnail: string
   duration: string
-  genre: string
+  category: string
+  description: string
+  publishDate: string
+  popularity: number
 }
 
 // Mock data - in real app this would come from API
-const mockTracks: Track[] = [
+const mockEpisodes: Episode[] = [
     {
       id: '1',
-      title: 'Midnight Vibes',
-      artist: 'Lo-Fi Collective',
-      album: 'Coding Sessions',
-      albumArt: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&h=300&fit=crop',
-      duration: '3:24',
-      genre: 'Lo-Fi'
+      title: 'The Future of AI in Productivity',
+      podcastName: 'Tech Forward',
+      host: 'Sarah Chen',
+      thumbnail: 'https://images.unsplash.com/photo-1589492477829-5e65395b66cc?w=300&h=300&fit=crop',
+      duration: '42:30',
+      category: 'Technology',
+      description: 'Exploring how AI is transforming workplace productivity and the tools that are changing how we work.',
+      publishDate: '2024-01-15',
+      popularity: 92
     },
     {
       id: '2',
-      title: 'Digital Dreams',
-      artist: 'Synthwave Studios',
-      album: 'Neon Nights',
-      albumArt: 'https://images.unsplash.com/photo-1571974599782-87624638275e?w=300&h=300&fit=crop',
-      duration: '4:12',
-      genre: 'Electronic'
+      title: 'Building Resilient Teams',
+      podcastName: 'Leadership Insights',
+      host: 'Marcus Rodriguez',
+      thumbnail: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop',
+      duration: '38:45',
+      category: 'Business',
+      description: 'Strategies for creating teams that thrive under pressure and adapt to change effectively.',
+      publishDate: '2024-01-12',
+      popularity: 88
     },
     {
       id: '3',
-      title: 'Focus Flow',
-      artist: 'Ambient Arts',
-      album: 'Deep Work',
-      albumArt: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=300&h=300&fit=crop',
-      duration: '5:03',
-      genre: 'Ambient'
+      title: 'Mindful Morning Routines',
+      podcastName: 'Wellness Today',
+      host: 'Dr. Emma Thompson',
+      thumbnail: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=300&fit=crop',
+      duration: '28:15',
+      category: 'Health',
+      description: 'How to start your day with intention and create morning habits that boost mental clarity.',
+      publishDate: '2024-01-10',
+      popularity: 85
     },
     {
       id: '4',
-      title: 'Calm Circuits',
-      artist: 'Tech Tunes',
-      album: 'Binary Beats',
-      albumArt: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&h=300&fit=crop',
-      duration: '3:47',
-      genre: 'Chillstep'
+      title: 'The Science of Habit Formation',
+      podcastName: 'Psychology Deep Dive',
+      host: 'Prof. David Kim',
+      thumbnail: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=300&h=300&fit=crop',
+      duration: '45:20',
+      category: 'Science',
+      description: 'Understanding the neurological mechanisms behind habit formation and how to leverage them.',
+      publishDate: '2024-01-08',
+      popularity: 90
     },
     {
       id: '5',
-      title: 'Code & Coffee',
-      artist: 'Study Sounds',
-      album: 'Productivity Playlist',
-      albumArt: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=300&h=300&fit=crop',
-      duration: '4:35',
-      genre: 'Jazz'
+      title: 'Creative Problem Solving',
+      podcastName: 'Innovation Lab',
+      host: 'Alex Morgan',
+      thumbnail: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=300&fit=crop',
+      duration: '35:50',
+      category: 'Education',
+      description: 'Techniques and frameworks for approaching complex problems with creativity and systematic thinking.',
+      publishDate: '2024-01-05',
+      popularity: 87
     }
   ]
 
 const contextCards = [
     {
-      title: "Lo-Fi Hip Hop Origins",
-      origin: "Japan & United States",
-      year: "1990s-2000s",
-      description: "Lo-fi hip hop emerged from the underground hip-hop scene, combining jazz samples with hip-hop beats.",
-      culturalContext: "Originally popularized in Japanese cafes and later adopted by students worldwide as the perfect soundtrack for concentration and relaxation."
+      title: "Podcast Renaissance",
+      origin: "United States",
+      year: "2000s-2010s",
+      description: "The modern podcast era began with Serial in 2014, revolutionizing how we consume audio content.",
+      culturalContext: "From niche hobby to mainstream medium, podcasts have become the go-to format for deep-dive conversations, education, and storytelling in the digital age."
     },
     {
-      title: "Ambient Music Heritage",
-      origin: "United Kingdom",
-      year: "1970s",
-      description: "Pioneered by Brian Eno, ambient music was designed to create atmospheric environments.",
-      culturalContext: "Born from the idea that music could be 'as ignorable as it is interesting,' ambient music has become essential for focus and meditation practices."
+      title: "Talk Radio Evolution",
+      origin: "Global",
+      year: "1920s-Present",
+      description: "Talk radio laid the foundation for today's podcast culture, emphasizing intimate conversation and community.",
+      culturalContext: "The transition from broadcast radio to on-demand podcasting has democratized content creation, allowing anyone to become a broadcaster and build communities around shared interests."
     }
   ]
 
 export default function Results() {
   const location = useLocation()
-  const query = location.state?.query || "chill beats for coding"
-  const [currentTrackIndex, setCurrentTrackIndex] = useState(0)
-  const [tracks, setTracks] = useState<Track[]>([])
+  const query = location.state?.query || "productivity podcasts for focus"
+  const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState(0)
+  const [episodes, setEpisodes] = useState<Episode[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [liked, setLiked] = useState<Set<string>>(new Set())
 
   useEffect(() => {
     // Simulate API call
     const timer = setTimeout(() => {
-      setTracks(mockTracks)
+      setEpisodes(mockEpisodes)
       setIsLoading(false)
     }, 1000)
     return () => clearTimeout(timer)
-  }, []) // mockTracks is static, safe to omit
+  }, []) // mockEpisodes is static, safe to omit
 
-  const handleMoodChange = (energy: number, genre: string) => {
+  const handleMoodChange = (energy: number, category: string) => {
     // In real app, this would trigger new API call
-    console.log('Mood changed:', { energy, genre })
+    console.log('Mood changed:', { energy, category })
   }
 
-  const toggleLike = (trackId: string) => {
+  const toggleLike = (episodeId: string) => {
     setLiked(prev => {
       const newLiked = new Set(prev)
-      if (newLiked.has(trackId)) {
-        newLiked.delete(trackId)
+      if (newLiked.has(episodeId)) {
+        newLiked.delete(episodeId)
       } else {
-        newLiked.add(trackId)
+        newLiked.add(episodeId)
       }
       return newLiked
     })
   }
 
-  const nextTrack = () => {
-    setCurrentTrackIndex((prev) => (prev + 1) % tracks.length)
+  const nextEpisode = () => {
+    setCurrentEpisodeIndex((prev) => (prev + 1) % episodes.length)
   }
 
-  const prevTrack = () => {
-    setCurrentTrackIndex((prev) => (prev - 1 + tracks.length) % tracks.length)
+  const prevEpisode = () => {
+    setCurrentEpisodeIndex((prev) => (prev - 1 + episodes.length) % episodes.length)
   }
 
   if (isLoading) {
@@ -127,13 +145,13 @@ export default function Results() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-2 border-purple-400 border-t-transparent mx-auto mb-4"></div>
-          <p className="text-purple-400 font-medium">Finding your perfect tracks...</p>
+          <p className="text-purple-400 font-medium">Finding your perfect episodes...</p>
         </div>
       </div>
     )
   }
 
-  const currentTrack = tracks[currentTrackIndex]
+  const currentEpisode = episodes[currentEpisodeIndex]
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden pt-24">
@@ -169,16 +187,16 @@ export default function Results() {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
-            {/* Featured Track Carousel */}
+            {/* Featured Episode Carousel */}
             <div className="bg-slate-800 rounded-2xl p-8">
-              <h2 className="text-2xl font-bold text-white mb-6">Featured Track</h2>
+              <h2 className="text-2xl font-bold text-white mb-6">Featured Episode</h2>
               
               <div className="relative">
                 <div className="flex items-center space-x-6">
                   <div className="relative group">
                     <img 
-                      src={currentTrack.albumArt} 
-                      alt={currentTrack.album}
+                      src={currentEpisode.thumbnail} 
+                      alt={currentEpisode.podcastName}
                       className="w-48 h-48 rounded-2xl object-cover shadow-2xl"
                     />
                     <div className="absolute inset-0 bg-black/40 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -189,23 +207,23 @@ export default function Results() {
                   </div>
                   
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-white mb-2">{currentTrack.title}</h3>
-                    <p className="text-lg text-slate-300 mb-1">{currentTrack.artist}</p>
-                    <p className="text-slate-400 mb-4">{currentTrack.album} • {currentTrack.duration}</p>
+                    <h3 className="text-2xl font-bold text-white mb-2">{currentEpisode.title}</h3>
+                    <p className="text-lg text-slate-300 mb-1">{currentEpisode.podcastName}</p>
+                    <p className="text-slate-400 mb-4">Hosted by {currentEpisode.host} • {currentEpisode.duration}</p>
                     <div className="inline-block bg-purple-600/20 text-purple-300 px-3 py-1 rounded-full text-sm font-medium mb-6">
-                      {currentTrack.genre}
+                      {currentEpisode.category}
                     </div>
                     
                     <div className="flex items-center space-x-4">
                       <button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-6 py-3 rounded-xl font-medium transition-all flex items-center space-x-2">
                         <Plus className="h-5 w-5" />
-                        <span>Add to Playlist</span>
+                        <span>Add to Queue</span>
                       </button>
                       
                       <button 
-                        onClick={() => toggleLike(currentTrack.id)}
+                        onClick={() => toggleLike(currentEpisode.id)}
                         className={`p-3 rounded-xl transition-all ${
-                          liked.has(currentTrack.id) 
+                          liked.has(currentEpisode.id) 
                             ? 'bg-red-600 text-white' 
                             : 'bg-slate-700 text-slate-400 hover:bg-slate-600 hover:text-white'
                         }`}
@@ -223,26 +241,26 @@ export default function Results() {
                 {/* Carousel Controls */}
                 <div className="flex justify-between items-center mt-6">
                   <button 
-                    onClick={prevTrack}
+                    onClick={prevEpisode}
                     className="p-3 bg-slate-700 hover:bg-slate-600 text-white rounded-xl transition-colors"
                   >
                     <ChevronLeft className="h-5 w-5" />
                   </button>
                   
                   <div className="flex space-x-2">
-                    {tracks.map((_, index) => (
+                    {episodes.map((_, index) => (
                       <button
                         key={index}
-                        onClick={() => setCurrentTrackIndex(index)}
+                        onClick={() => setCurrentEpisodeIndex(index)}
                         className={`w-3 h-3 rounded-full transition-all ${
-                          index === currentTrackIndex ? 'bg-purple-500' : 'bg-slate-600'
+                          index === currentEpisodeIndex ? 'bg-purple-500' : 'bg-slate-600'
                         }`}
                       />
                     ))}
                   </div>
                   
                   <button 
-                    onClick={nextTrack}
+                    onClick={nextEpisode}
                     className="p-3 bg-slate-700 hover:bg-slate-600 text-white rounded-xl transition-colors"
                   >
                     <ChevronRight className="h-5 w-5" />
@@ -251,37 +269,37 @@ export default function Results() {
               </div>
             </div>
 
-            {/* Track List */}
+            {/* Episode List */}
             <div className="bg-slate-800 rounded-2xl p-8">
               <h2 className="text-2xl font-bold text-white mb-6">All Recommendations</h2>
               <div className="space-y-4">
-                {tracks.map((track, index) => (
+                {episodes.map((episode, index) => (
                   <div 
-                    key={track.id}
+                    key={episode.id}
                     className={`flex items-center space-x-4 p-4 rounded-xl transition-all cursor-pointer ${
-                      index === currentTrackIndex 
+                      index === currentEpisodeIndex 
                         ? 'bg-purple-600/20 border border-purple-500' 
                         : 'hover:bg-slate-700'
                     }`}
-                    onClick={() => setCurrentTrackIndex(index)}
+                    onClick={() => setCurrentEpisodeIndex(index)}
                   >
                     <img 
-                      src={track.albumArt} 
-                      alt={track.album}
+                      src={episode.thumbnail} 
+                      alt={episode.podcastName}
                       className="w-16 h-16 rounded-lg object-cover"
                     />
                     <div className="flex-1">
-                      <h4 className="font-semibold text-white">{track.title}</h4>
-                      <p className="text-slate-400">{track.artist} • {track.album}</p>
+                      <h4 className="font-semibold text-white">{episode.title}</h4>
+                      <p className="text-slate-400">{episode.podcastName} • {episode.host}</p>
                     </div>
-                    <div className="text-slate-400 text-sm">{track.duration}</div>
+                    <div className="text-slate-400 text-sm">{episode.duration}</div>
                     <button 
                       onClick={(e) => {
                         e.stopPropagation()
-                        toggleLike(track.id)
+                        toggleLike(episode.id)
                       }}
                       className={`p-2 rounded-lg transition-all ${
-                        liked.has(track.id) 
+                        liked.has(episode.id) 
                           ? 'text-red-400 hover:text-red-300' 
                           : 'text-slate-400 hover:text-white'
                       }`}
@@ -299,7 +317,7 @@ export default function Results() {
             {/* Mood Slider */}
             <MoodSlider 
               onEnergyChange={(energy) => handleMoodChange(energy, '')}
-              onGenreChange={(genre) => handleMoodChange(50, genre)}
+              onGenreChange={(category) => handleMoodChange(50, category)}
             />
 
             {/* Context Cards */}

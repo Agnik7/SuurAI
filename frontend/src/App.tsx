@@ -8,7 +8,7 @@ import Signup from './pages/auth/Signup'
 import Discovery from './pages/Discovery'
 import Results from './pages/Results'
 import SearchResults from './pages/SearchResults'
-import SongDetail from './pages/SongDetail'
+import EpisodeDetail from './pages/EpisodeDetail'
 
 function App() {
   return (
@@ -35,9 +35,9 @@ function App() {
                 <SearchResults />
               </ProtectedRoute>
             } />
-            <Route path="/song/:id" element={
+            <Route path="/episode/:id" element={
               <ProtectedRoute>
-                <SongDetail />
+                <EpisodeDetail />
               </ProtectedRoute>
             } />
           </Routes>

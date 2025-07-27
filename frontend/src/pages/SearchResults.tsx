@@ -1,96 +1,102 @@
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate, Link } from 'react-router-dom'
-import { Play, Heart, Plus, Share, Filter, ArrowLeft, Clock, Music2 } from 'lucide-react'
+import { Play, Heart, Plus, Share, Filter, ArrowLeft, Clock, Mic } from 'lucide-react'
 
-interface Track {
+interface Episode {
   id: string
   title: string
-  artist: string
-  album: string
+  podcastName: string
+  host: string
+  thumbnail: string
   duration: string
-  albumArt: string
-  genre: string
-  year: number
+  category: string
+  description: string
+  publishDate: string
   popularity: number
-  preview_url?: string
 }
 
 export default function SearchResults() {
   const location = useLocation()
   const navigate = useNavigate()
-  const query = location.state?.query || "chill beats for coding"
-  const [tracks, setTracks] = useState<Track[]>([])
+  const query = location.state?.query || "productivity podcasts for developers"
+  const [episodes, setEpisodes] = useState<Episode[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [liked, setLiked] = useState<Set<string>>(new Set())
   const [sortBy, setSortBy] = useState<'relevance' | 'popularity' | 'duration'>('relevance')
-  const [filterGenre, setFilterGenre] = useState<string>('')
+  const [filterCategory, setFilterCategory] = useState<string>('')
 
   // Mock search results data
-  const mockTracks: Track[] = [
+  const mockEpisodes: Episode[] = [
     {
       id: '1',
-      title: 'Midnight Coding',
-      artist: 'Lo-Fi Chronicles',
-      album: 'Developer Dreams',
-      duration: '3:42',
-      albumArt: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&h=300&fit=crop',
-      genre: 'Lo-Fi Hip Hop',
-      year: 2023,
+      title: 'Deep Work Strategies for Developers',
+      podcastName: 'The Productive Programmer',
+      host: 'Alex Chen',
+      thumbnail: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=300&h=300&fit=crop',
+      duration: '42:30',
+      category: 'Technology',
+      description: 'Exploring techniques for maintaining focus during coding sessions.',
+      publishDate: '2024-01-15',
       popularity: 89
     },
     {
       id: '2',
-      title: 'Peaceful Algorithms',
-      artist: 'Code & Coffee',
-      album: 'Programming Zen',
-      duration: '4:15',
-      albumArt: 'https://images.unsplash.com/photo-1571974599782-87624638275e?w=300&h=300&fit=crop',
-      genre: 'Ambient',
-      year: 2024,
+      title: 'Mindful Coding Practices',
+      podcastName: 'Zen and the Art of Programming',
+      host: 'Sarah Martinez',
+      thumbnail: 'https://images.unsplash.com/photo-1571974599782-87624638275e?w=300&h=300&fit=crop',
+      duration: '38:45',
+      category: 'Wellness',
+      description: 'How to maintain mental clarity while writing code.',
+      publishDate: '2024-01-12',
       popularity: 76
     },
     {
       id: '3',
-      title: 'Focus State',
-      artist: 'Digital Harmony',
-      album: 'Deep Work Sessions',
-      duration: '5:23',
-      albumArt: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=300&h=300&fit=crop',
-      genre: 'Electronic',
-      year: 2023,
+      title: 'Building Better Software Teams',
+      podcastName: 'Engineering Leadership',
+      host: 'Michael Johnson',
+      thumbnail: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=300&h=300&fit=crop',
+      duration: '52:23',
+      category: 'Business',
+      description: 'Strategies for creating high-performing development teams.',
+      publishDate: '2024-01-10',
       popularity: 82
     },
     {
       id: '4',
-      title: 'Subtle Rhythms',
-      artist: 'Calm Collective',
-      album: 'Concentration',
-      duration: '3:58',
-      albumArt: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&h=300&fit=crop',
-      genre: 'Instrumental',
-      year: 2024,
+      title: 'The Science of Learning to Code',
+      podcastName: 'Developer Psychology',
+      host: 'Dr. Emma Wilson',
+      thumbnail: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=300&h=300&fit=crop',
+      duration: '35:58',
+      category: 'Education',
+      description: 'Understanding how the brain learns programming concepts.',
+      publishDate: '2024-01-08',
       popularity: 71
     },
     {
       id: '5',
-      title: 'Binary Dreams',
-      artist: 'Tech Vibes',
-      album: 'Code Poetry',
-      duration: '4:07',
-      albumArt: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=300&h=300&fit=crop',
-      genre: 'Synthwave',
-      year: 2023,
+      title: 'Startup Stories: From Code to IPO',
+      podcastName: 'Entrepreneur Tech Tales',
+      host: 'David Kim',
+      thumbnail: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=300&h=300&fit=crop',
+      duration: '41:07',
+      category: 'Business',
+      description: 'How developers became successful startup founders.',
+      publishDate: '2024-01-05',
       popularity: 85
     },
     {
       id: '6',
-      title: 'Quiet Variables',
-      artist: 'Programming Sounds',
-      album: 'Function Flow',
-      duration: '3:29',
-      albumArt: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&h=300&fit=crop',
-      genre: 'Lo-Fi Hip Hop',
-      year: 2024,
+      title: 'Clean Code Principles',
+      podcastName: 'Code Quality Matters',
+      host: 'Jennifer Lopez',
+      thumbnail: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=300&h=300&fit=crop',
+      category: 'Technology',
+      duration: '33:29',
+      description: 'Writing maintainable and readable code that lasts.',
+      publishDate: '2024-01-03',
       popularity: 78
     }
   ]
@@ -98,29 +104,29 @@ export default function SearchResults() {
   useEffect(() => {
     // Simulate API call
     const timer = setTimeout(() => {
-      setTracks(mockTracks)
+      setEpisodes(mockEpisodes)
       setIsLoading(false)
     }, 1500)
     return () => clearTimeout(timer)
   }, [])
 
-  const toggleLike = (trackId: string) => {
+  const toggleLike = (episodeId: string) => {
     setLiked(prev => {
       const newLiked = new Set(prev)
-      if (newLiked.has(trackId)) {
-        newLiked.delete(trackId)
+      if (newLiked.has(episodeId)) {
+        newLiked.delete(episodeId)
       } else {
-        newLiked.add(trackId)
+        newLiked.add(episodeId)
       }
       return newLiked
     })
   }
 
-  const handleTrackClick = (track: Track) => {
-    navigate(`/song/${track.id}`, { state: { track } })
+  const handleEpisodeClick = (episode: Episode) => {
+    navigate(`/episode/${episode.id}`, { state: { episode } })
   }
 
-  const sortedTracks = [...tracks].sort((a, b) => {
+  const sortedEpisodes = [...episodes].sort((a, b) => {
     switch (sortBy) {
       case 'popularity':
         return b.popularity - a.popularity
@@ -131,11 +137,11 @@ export default function SearchResults() {
     }
   })
 
-  const filteredTracks = filterGenre 
-    ? sortedTracks.filter(track => track.genre === filterGenre)
-    : sortedTracks
+  const filteredEpisodes = filterCategory 
+    ? sortedEpisodes.filter(episode => episode.category === filterCategory)
+    : sortedEpisodes
 
-  const genres = [...new Set(tracks.map(track => track.genre))]
+  const categories = [...new Set(episodes.map(episode => episode.category))]
 
   if (isLoading) {
     return (
@@ -149,8 +155,8 @@ export default function SearchResults() {
         <div className="relative flex items-center justify-center min-h-screen">
           <div className="text-center">
             <div className="animate-spin rounded-full h-16 w-16 border-2 border-purple-400 border-t-transparent mx-auto mb-6"></div>
-            <h2 className="text-2xl font-bold text-white mb-2">Searching for music...</h2>
-            <p className="text-slate-400">Finding the perfect tracks for "{query}"</p>
+            <h2 className="text-2xl font-bold text-white mb-2">Searching for podcasts...</h2>
+            <p className="text-slate-400">Finding the perfect episodes for "{query}"</p>
           </div>
         </div>
       </div>
@@ -180,7 +186,7 @@ export default function SearchResults() {
           </Link>
           <div>
             <h1 className="text-3xl font-bold text-white">Search Results</h1>
-            <p className="text-slate-400">Found {filteredTracks.length} tracks for "{query}"</p>
+            <p className="text-slate-400">Found {filteredEpisodes.length} episodes for "{query}"</p>
           </div>
         </div>
 
@@ -202,36 +208,36 @@ export default function SearchResults() {
               </select>
 
               <select
-                value={filterGenre}
-                onChange={(e) => setFilterGenre(e.target.value)}
+                value={filterCategory}
+                onChange={(e) => setFilterCategory(e.target.value)}
                 className="glass-input px-4 py-2 rounded-lg text-white bg-transparent border border-slate-600"
               >
-                <option value="">All Genres</option>
-                {genres.map(genre => (
-                  <option key={genre} value={genre}>{genre}</option>
+                <option value="">All Categories</option>
+                {categories.map(category => (
+                  <option key={category} value={category}>{category}</option>
                 ))}
               </select>
             </div>
 
             <div className="text-sm text-slate-400">
-              {filteredTracks.length} of {tracks.length} tracks
+              {filteredEpisodes.length} of {episodes.length} episodes
             </div>
           </div>
         </div>
 
         {/* Results Grid */}
         <div className="grid gap-4">
-          {filteredTracks.map((track) => (
+          {filteredEpisodes.map((episode) => (
             <div
-              key={track.id}
+              key={episode.id}
               className="group glass-card rounded-2xl p-6 hover:bg-slate-800/50 transition-all duration-500 cursor-pointer transform hover:-translate-y-1"
-              onClick={() => handleTrackClick(track)}
+              onClick={() => handleEpisodeClick(episode)}
             >
               <div className="flex items-center space-x-6">
                 <div className="flex-shrink-0 relative">
                   <img 
-                    src={track.albumArt} 
-                    alt={track.album}
+                    src={episode.thumbnail} 
+                    alt={episode.podcastName}
                     className="w-20 h-20 rounded-xl object-cover shadow-lg"
                   />
                   <div className="absolute inset-0 bg-black/40 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -240,21 +246,21 @@ export default function SearchResults() {
                 </div>
 
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-xl font-bold text-white mb-1 truncate">{track.title}</h3>
-                  <p className="text-slate-300 mb-2">{track.artist} • {track.album}</p>
+                  <h3 className="text-xl font-bold text-white mb-1 truncate">{episode.title}</h3>
+                  <p className="text-slate-300 mb-2">{episode.podcastName} • {episode.host}</p>
                   <div className="flex items-center space-x-4 text-sm text-slate-400">
                     <span className="flex items-center space-x-1">
-                      <Music2 className="h-4 w-4" />
-                      <span>{track.genre}</span>
+                      <Mic className="h-4 w-4" />
+                      <span>{episode.category}</span>
                     </span>
                     <span className="flex items-center space-x-1">
                       <Clock className="h-4 w-4" />
-                      <span>{track.duration}</span>
+                      <span>{episode.duration}</span>
                     </span>
-                    <span>{track.year}</span>
+                    <span>{new Date(episode.publishDate).getFullYear()}</span>
                     <div className="flex items-center space-x-1">
                       <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                      <span>{track.popularity}% match</span>
+                      <span>{episode.popularity}% match</span>
                     </div>
                   </div>
                 </div>
@@ -263,10 +269,10 @@ export default function SearchResults() {
                   <button
                     onClick={(e) => {
                       e.stopPropagation()
-                      toggleLike(track.id)
+                      toggleLike(episode.id)
                     }}
                     className={`glass-button p-3 rounded-xl transition-all ${
-                      liked.has(track.id) 
+                      liked.has(episode.id) 
                         ? 'text-red-400 bg-red-500/10' 
                         : 'text-slate-400 hover:text-white'
                     }`}
@@ -293,10 +299,10 @@ export default function SearchResults() {
           ))}
         </div>
 
-        {filteredTracks.length === 0 && (
+        {filteredEpisodes.length === 0 && (
           <div className="text-center py-12">
-            <Music2 className="h-16 w-16 text-slate-400 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-white mb-2">No tracks found</h3>
+            <Mic className="h-16 w-16 text-slate-400 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-white mb-2">No episodes found</h3>
             <p className="text-slate-400">Try adjusting your filters or search for something else.</p>
           </div>
         )}

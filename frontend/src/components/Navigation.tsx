@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Music, Menu, X, LogOut } from 'lucide-react'
+import { Mic, Menu, X, LogOut } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
 export default function Navigation() {
@@ -44,7 +44,7 @@ export default function Navigation() {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="relative">
-              <Music className="h-10 w-10 text-purple-400 group-hover:text-purple-300 transition-colors" />
+              <Mic className="h-10 w-10 text-purple-400 group-hover:text-purple-300 transition-colors" />
               <div className="absolute inset-0 bg-purple-400/20 rounded-lg blur-lg group-hover:bg-purple-300/30 transition-all"></div>
             </div>
             <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
