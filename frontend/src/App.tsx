@@ -9,6 +9,7 @@ import Discovery from './pages/Discovery'
 import Results from './pages/Results'
 import SearchResults from './pages/SearchResults'
 import EpisodeDetail from './pages/EpisodeDetail'
+import PodcastDetail from './pages/PodcastDetail'
 
 function App() {
   return (
@@ -38,6 +39,11 @@ function App() {
             <Route path="/episode/:id" element={
               <ProtectedRoute>
                 <EpisodeDetail />
+              </ProtectedRoute>
+            } />
+            <Route path="/podcast/:id" element={
+              <ProtectedRoute>
+                <PodcastDetail />
               </ProtectedRoute>
             } />
           </Routes>
