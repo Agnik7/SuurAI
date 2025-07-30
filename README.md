@@ -1,17 +1,17 @@
-# SuurAI - AI-Powered Music Discovery Platform
+# SuurAI - AI-Powered Podcast Discovery Platform
 
 ![SuurAI Logo](https://via.placeholder.com/150x50/8b5cf6/ffffff?text=SuurAI)
 
-SuurAI is a modern, glassmorphic music discovery platform that uses AI to help users find the perfect soundtrack based on their mood, activity, or preferences. Built with React, TypeScript, and TailwindCSS, featuring a premium user experience with smooth animations and intuitive navigation.
+SuurAI is a modern, glassmorphic podcast discovery platform that uses AI to help users find the perfect podcast based on their mood, activity, or preferences. Built with React, TypeScript, and TailwindCSS, featuring a premium user experience with smooth animations and intuitive navigation.
 
-## 🎵 Features
+## 🎙️ Features
 
 ### Core Functionality
-- **AI-Powered Music Discovery**: Natural language queries to find music
+- **AI-Powered Podcast Discovery**: Natural language queries to find podcasts
 - **Mood-Based Recommendations**: Describe your feeling or activity
-- **Interactive Music Player**: Full playback controls with progress tracking
-- **Song Details**: Comprehensive track information and audio features
-- **Similar Tracks**: AI-curated recommendations based on current selection
+- **Interactive Podcast Player**: Full playback controls with progress tracking
+- **Episode Details**: Comprehensive episode information
+- **Similar Podcasts**: AI-curated recommendations based on current selection
 
 ### Premium UX/UI
 - **Glassmorphic Design**: Modern frosted glass aesthetic throughout
@@ -108,24 +108,24 @@ npm run lint
 1. While logged out, try accessing:
    - `/discovery`
    - `/search-results`
-   - `/song/1`
+   - `/episode/1`
 2. **Expected**: Redirected to login page for all protected routes
 
-### 2. Music Discovery Flow
+### 2. Podcast Discovery Flow
 
 #### **Basic Search Test**
 1. **Login** first (see authentication steps above)
 2. Navigate to Discovery page (`/discovery`)
 3. **Test Text Input**:
-   - Type: `"I need chill beats for evening coding"`
+   - Type: `"I need a podcast about space"`
    - Click the send button (arrow icon)
    - **Expected**: 2-second loading animation, then redirect to search results
 
 #### **Quick Prompts Test**
 1. On Discovery page, click any of the preset mood buttons:
-   - "Upbeat workout music"
-   - "Relaxing study playlist"
-   - "Party vibes for dancing"
+   - "Upbeat workout podcast"
+   - "Relaxing study podcast"
+   - "Podcast for a long drive"
    - etc.
 2. **Expected**: Query fills input field automatically
 3. Submit the query using the send button
@@ -133,7 +133,7 @@ npm run lint
 #### **Voice Input Simulation**
 1. Click the microphone icon in the search bar
 2. **Expected**: Button turns red with pulsing animation
-3. After 2 seconds, mock voice input appears: `"I need chill beats for evening coding"`
+3. After 2 seconds, mock voice input appears: `"I need a funny podcast"`
 4. **Expected**: Microphone button returns to normal state
 
 ### 3. Search Results Interaction
@@ -141,11 +141,11 @@ npm run lint
 #### **Browse Results**
 1. After submitting a search query, you'll see the search results page
 2. **Expected Elements**:
-   - Header showing "Found X tracks for [your query]"
+   - Header showing "Found X episodes for [your query]"
    - Filter controls (Sort by, Genre filter)
-   - Grid of 6 mock tracks with:
-     - Album artwork
-     - Track title, artist, album
+   - Grid of 6 mock episodes with:
+     - Podcast artwork
+     - Episode title, podcast name
      - Duration and genre
      - Popularity percentage
      - Interactive buttons (heart, plus, share)
@@ -153,17 +153,17 @@ npm run lint
 #### **Test Filtering**
 1. **Sort Test**:
    - Change "Sort by" dropdown to "Popularity"
-   - **Expected**: Tracks reorder by popularity percentage
+   - **Expected**: Episodes reorder by popularity percentage
    - Try "Duration" sorting as well
 
 2. **Genre Filter Test**:
-   - Select a genre from "All Genres" dropdown (e.g., "Lo-Fi Hip Hop")
-   - **Expected**: Only tracks matching that genre show
+   - Select a genre from "All Genres" dropdown (e.g., "Technology")
+   - **Expected**: Only episodes matching that genre show
    - Select "All Genres" to reset
 
-#### **Track Interaction**
+#### **Episode Interaction**
 1. **Like/Unlike**:
-   - Click heart icon on any track
+   - Click heart icon on any episode
    - **Expected**: Heart turns red and stays filled
    - Click again to unlike
 
@@ -172,15 +172,15 @@ npm run lint
    - Click share icon
    - **Expected**: Buttons respond with hover effects (no functional backend)
 
-### 4. Song Detail Page
+### 4. Episode Detail Page
 
-#### **Navigate to Song Details**
-1. From search results, click anywhere on a track card
-2. **Expected**: Navigate to song detail page (`/song/:id`)
+#### **Navigate to Episode Details**
+1. From search results, click anywhere on an episode card
+2. **Expected**: Navigate to episode detail page (`/episode/:id`)
 
-#### **Test Music Player**
+#### **Test Podcast Player**
 1. **Play/Pause**:
-   - Click the large play button in the center or on the album art
+   - Click the large play button in the center or on the artwork
    - **Expected**: Button changes to pause icon
    - **Expected**: Progress bar starts moving
    - **Expected**: Timer counts up from 0:00
@@ -190,15 +190,14 @@ npm run lint
    - Adjust volume slider
    - **Expected**: All controls respond with visual feedback
 
-#### **Explore Song Information**
-1. **Track Details**:
-   - View comprehensive track information
-   - Check audio features (Energy: 85, Danceability: 72, etc.)
-   - Read artist information
+#### **Explore Episode Information**
+1. **Episode Details**:
+   - View comprehensive episode information
+   - Read podcast information
 
-2. **Similar Tracks**:
-   - Scroll to sidebar "Similar Tracks" section
-   - Click on any similar track
+2. **Similar Podcasts**:
+   - Scroll to sidebar "Similar Podcasts" section
+   - Click on any similar podcast
    - **Expected**: Hover effects and play icons appear
 
 ### 5. Navigation & User Experience
@@ -243,7 +242,7 @@ npm run lint
 
 2. **Loading States**:
    - Search processing animation (2 seconds)
-   - Music player progress animation
+   - Player progress animation
    - Page transition smoothness
 
 #### **Color Consistency**
@@ -317,11 +316,12 @@ src/
 │   ├── auth/           # Authentication pages
 │   │   ├── Login.tsx   # User login form
 │   │   └── Signup.tsx  # User registration form
-│   ├── Discovery.tsx   # Music discovery interface
+│   ├── Discovery.tsx   # Podcast discovery interface
 │   ├── Landing.tsx     # Home/landing page
 │   ├── Results.tsx     # Legacy results page
 │   ├── SearchResults.tsx # Search results grid
-│   └── SongDetail.tsx  # Individual song information
+│   ├── EpisodeDetail.tsx # Individual episode information
+│   └── PodcastDetail.tsx # Individual podcast information
 ├── App.tsx             # Main app component with routing
 ├── main.tsx           # Application entry point
 └── index.css          # Global styles and glassmorphic effects
@@ -353,6 +353,3 @@ The build creates optimized files in the `dist/` directory ready for deployment 
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
----
-
-**Note**: This is a frontend-only implementation with mock data. In a production environment, you would connect to real music APIs (Spotify, Apple Music, etc.) and implement proper backend authentication.
