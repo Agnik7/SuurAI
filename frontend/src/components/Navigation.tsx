@@ -71,7 +71,7 @@ export default function Navigation() {
               </Link>
             ))}
             
-            {isAuthenticated && (
+            {/* {isAuthenticated && (
               <div className="relative ml-4">
                 <button
                   onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
@@ -97,7 +97,7 @@ export default function Navigation() {
                   </div>
                 )}
               </div>
-            )}
+            )} */}
           </div>
 
           {/* Mobile Menu Button */}
