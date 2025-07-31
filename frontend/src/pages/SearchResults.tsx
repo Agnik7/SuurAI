@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate, Link } from 'react-router-dom'
-import { Play, Heart, Plus, Share, Filter, ArrowLeft, Clock, Mic, Users } from 'lucide-react'
+import { Play, Heart, Plus, Share, Filter, ArrowLeft, Mic, Users } from 'lucide-react'
 import AudioPlayer from '../components/AudioPlayer'
-import podcastAPI, { PodcastRecommendation, getImageUrl } from '../services/api'
+import podcastAPI, { PodcastRecommendation } from '../services/api'
 
 interface Episode {
   id: string

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Play, Headphones, Sparkles, ArrowRight, Mic } from 'lucide-react'
+import { Play, Sparkles, ArrowRight, Mic } from 'lucide-react'
 
 export default function Landing() {
   return (

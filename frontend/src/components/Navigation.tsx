@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Mic, Menu, X, LogOut } from 'lucide-react'
+import { Mic, Menu, X } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
 export default function Navigation() {
   const location = useLocation()
   const navigate = useNavigate()
-  const { user, isAuthenticated, logout } = useAuth()
+  const { isAuthenticated } = useAuth()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,11 +18,6 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const handleLogout = () => {
-    logout()
-    navigate('/')
-    setIsUserMenuOpen(false)
-  }
 
   const navLinks = isAuthenticated ? [
     { to: '/', label: 'Home' },

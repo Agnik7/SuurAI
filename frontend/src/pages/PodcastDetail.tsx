@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams, useNavigate, useLocation, Link } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { Play, Heart, Plus, Share, ArrowLeft, Clock, User, Calendar } from 'lucide-react'
 import podcastAPI, { PodcastWithEpisodes, formatDuration, getImageUrl } from '../services/api'
 import AudioPlayer from '../components/AudioPlayer'
@@ -35,7 +35,6 @@ export default function PodcastDetail() {
   const [error, setError] = useState<string | null>(null)
   const [likedEpisodes, setLikedEpisodes] = useState<Set<string>>(new Set())
   const [currentlyPlaying, setCurrentlyPlaying] = useState<{episodeId: string, title: string, podcastName: string, audioUrl: string, spotifyUrl?: string} | null>(null)
-  const [spotifyEmbedUrl, setSpotifyEmbedUrl] = useState<string>('')
 
   const transformPodcastData = (data: PodcastWithEpisodes): Podcast => {
     return {

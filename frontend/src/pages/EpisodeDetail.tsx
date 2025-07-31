@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { 
   ArrowLeft, Play, Pause, Heart, Plus, Share, Download, 
-  Clock, Calendar, Mic, Users, Award, Volume2,
+  Clock, Calendar, Mic, Award, Volume2,
   SkipBack, SkipForward, Repeat, Shuffle, Radio
 } from 'lucide-react'
 

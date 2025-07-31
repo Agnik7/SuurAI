@@ -10,13 +10,12 @@ interface AudioPlayerProps {
   onClose: () => void
 }
 
-export default function AudioPlayer({ episodeId, title, podcastName, audioUrl, spotifyUrl, onClose }: AudioPlayerProps) {
+export default function AudioPlayer({ title, podcastName, audioUrl, spotifyUrl, onClose }: AudioPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [volume, setVolume] = useState(1)
   const audioRef = useRef<HTMLAudioElement>(null)
-  const iframeRef = useRef<HTMLIFrameElement>(null)
 
   useEffect(() => {
     if (spotifyUrl) {
