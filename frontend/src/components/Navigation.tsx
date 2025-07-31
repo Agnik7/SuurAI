@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Mic, Menu, X } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
