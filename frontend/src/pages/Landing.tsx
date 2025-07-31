@@ -44,7 +44,7 @@ export default function Landing() {
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
               <Link 
-                to="/login"
+                to="/discovery"
                 className="group relative bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 hover:from-purple-500 hover:via-blue-500 hover:to-purple-500 text-white font-semibold py-5 px-10 rounded-2xl transition-all duration-500 transform hover:scale-105 flex items-center space-x-3 shadow-2xl hover:shadow-purple-500/25"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity"></div>
@@ -138,7 +138,7 @@ export default function Landing() {
               <span className="text-purple-300 font-medium">Your next favorite episode is just a mood away.</span>
             </p>
             <Link 
-              to="/login"
+              to="/discovery"
               className="group relative inline-flex items-center space-x-3 bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 hover:from-purple-500 hover:via-blue-500 hover:to-purple-500 text-white font-semibold py-5 px-10 rounded-2xl transition-all duration-500 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/25"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity"></div>

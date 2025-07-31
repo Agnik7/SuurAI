@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Mic, Menu, X } from 'lucide-react'
-import { useAuth } from '../context/AuthContext'
 
 export default function Navigation() {
   const location = useLocation()
-  const { isAuthenticated } = useAuth()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -18,12 +16,9 @@ export default function Navigation() {
   }, [])
 
 
-  const navLinks = isAuthenticated ? [
+  const navLinks = [
     { to: '/', label: 'Home' },
     { to: '/discovery', label: 'Discover' }
-  ] : [
-    { to: '/', label: 'Home' },
-    { to: '/login', label: 'Sign In' }
   ]
 
   return (
