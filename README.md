@@ -1,7 +1,5 @@
 # SuurAI - AI-Powered Podcast Discovery Platform
 
-![SuurAI Logo](https://via.placeholder.com/150x50/8b5cf6/ffffff?text=SuurAI)
-
 SuurAI is a modern, glassmorphic podcast discovery platform that uses AI to help users find the perfect podcast based on their mood, activity, or preferences. Built with React, TypeScript, and TailwindCSS, featuring a premium user experience with smooth animations and intuitive navigation.
 
 ## 🎙️ Features
