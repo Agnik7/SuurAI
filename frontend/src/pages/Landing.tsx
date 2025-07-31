@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Play, Sparkles, ArrowRight, Mic } from 'lucide-react'
+import { Play, Sparkles, ArrowRight, Headphones } from 'lucide-react'
 
 export default function Landing() {
   return (
@@ -79,7 +79,7 @@ export default function Landing() {
             <div className="group text-center p-10 rounded-3xl glass-card hover:border-purple-500/50 transition-all duration-500 transform hover:-translate-y-2">
               <div className="relative mb-8">
                 <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center mx-auto shadow-2xl group-hover:scale-110 transition-transform">
-                  <Mic className="h-10 w-10 text-white" />
+                  <Headphones className="h-10 w-10 text-white" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity mx-auto w-20 h-20"></div>
               </div>
@@ -87,7 +87,7 @@ export default function Landing() {
                 Describe Your Mood
               </h3>
               <p className="text-slate-400 leading-relaxed text-lg">
-                Type or speak naturally: "I need productivity podcasts for focused work" or "motivational business content"
+                Type naturally: "I need productivity podcasts for focused work" or "motivational business content"
               </p>
             </div>
             

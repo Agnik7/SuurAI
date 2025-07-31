@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate, Link } from 'react-router-dom'
-import { Play, Heart, Plus, Share, Filter, ArrowLeft, Mic, Users } from 'lucide-react'
+import { Play, Heart, Plus, Share, Filter, ArrowLeft, Radio, Users } from 'lucide-react'
 import AudioPlayer from '../components/AudioPlayer'
 import podcastAPI, { PodcastRecommendation } from '../services/api'
 
@@ -284,7 +284,7 @@ export default function SearchResults() {
                   <p className="text-slate-400 text-sm mb-3 line-clamp-2">{podcast.description}</p>
                   <div className="flex items-center space-x-4 text-sm text-slate-400">
                     <span className="flex items-center space-x-1">
-                      <Mic className="h-4 w-4" />
+                      <Radio className="h-4 w-4" />
                       <span>{podcast.category}</span>
                     </span>
                     <span className="flex items-center space-x-1">
@@ -356,7 +356,7 @@ export default function SearchResults() {
 
         {filteredPodcasts.length === 0 && !isLoading && !error && (
           <div className="text-center py-12">
-            <Mic className="h-16 w-16 text-slate-400 mx-auto mb-4" />
+            <Radio className="h-16 w-16 text-slate-400 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-white mb-2">No podcasts found</h3>
             <p className="text-slate-400">Try adjusting your filters or search for something else.</p>
           </div>

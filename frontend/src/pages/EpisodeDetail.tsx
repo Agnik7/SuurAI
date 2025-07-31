@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { 
   ArrowLeft, Play, Pause, Heart, Plus, Share, Download, 
-  Clock, Calendar, Mic, Award, Volume2,
-  SkipBack, SkipForward, Repeat, Shuffle, Radio
+  Clock, Calendar, Radio, Award, Volume2,
+  SkipBack, SkipForward, Repeat, Shuffle
 } from 'lucide-react'
 
 interface Episode {
@@ -195,7 +195,7 @@ export default function EpisodeDetail() {
                       <span>Category: {episode.category}</span>
                     </div>
                     <div className="flex items-center space-x-2 text-slate-400">
-                      <Mic className="h-4 w-4" />
+                      <Radio className="h-4 w-4" />
                       <span>Host: {episode.host}</span>
                     </div>
                   </div>

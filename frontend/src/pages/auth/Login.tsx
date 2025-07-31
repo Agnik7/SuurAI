@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Mail, Lock, Eye, EyeOff, Mic } from 'lucide-react'
+import { Mail, Lock, Eye, EyeOff, Radio } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 
 export default function Login() {
@@ -50,7 +50,7 @@ export default function Login() {
           <div className="text-center">
             <div className="flex items-center justify-center space-x-3 mb-6">
               <div className="relative">
-                <Mic className="h-12 w-12 text-purple-400" />
+                <Radio className="h-12 w-12 text-purple-400" />
                 <div className="absolute inset-0 bg-purple-400/20 rounded-lg blur-lg"></div>
               </div>
               <span className="text-3xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">

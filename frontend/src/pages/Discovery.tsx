@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Search, Mic, Send, Sparkles } from 'lucide-react'
+import { Search, Send, Sparkles } from 'lucide-react'
 
 export default function Discovery() {
   const [query, setQuery] = useState('')
-  const [isListening, setIsListening] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
   const navigate = useNavigate()
 
@@ -21,16 +20,6 @@ export default function Discovery() {
     navigate('/search-results', { state: { query } })
   }
 
-  const handleVoiceInput = () => {
-    setIsListening(!isListening)
-    // Mock voice input
-    if (!isListening) {
-      setTimeout(() => {
-        setQuery("I need productivity podcasts for focused work")
-        setIsListening(false)
-      }, 2000)
-    }
-  }
 
   const quickPrompts = [
     "Motivational business podcasts",
@@ -83,23 +72,11 @@ export default function Discovery() {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Type or speak your mood... e.g., 'I need productivity podcasts for focused work'"
+                placeholder="Type your mood... e.g., 'I need productivity podcasts for focused work'"
                 className="flex-1 bg-transparent text-white placeholder-slate-400 px-6 py-8 text-lg focus:outline-none"
                 disabled={isProcessing}
               />
               
-              <button
-                type="button"
-                onClick={handleVoiceInput}
-                className={`mx-4 p-4 rounded-2xl transition-all shadow-lg ${
-                  isListening 
-                    ? 'bg-red-500 text-white animate-pulse shadow-red-500/25' 
-                    : 'bg-slate-700/50 text-slate-400 hover:bg-slate-600/50 hover:text-white border border-slate-600/50'
-                }`}
-                disabled={isProcessing}
-              >
-                <Mic className="h-6 w-6" />
-              </button>
               
               <button
                 type="submit"
@@ -115,13 +92,6 @@ export default function Discovery() {
               </button>
             </div>
             
-            {isListening && (
-              <div className="absolute top-full mt-2 left-0 right-0 text-center">
-                <p className="text-sm text-red-400 animate-pulse">
-                  🎤 Listening... speak your mood
-                </p>
-              </div>
-            )}
           </div>
         </form>
 
