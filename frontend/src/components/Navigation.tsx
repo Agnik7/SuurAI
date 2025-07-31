@@ -5,7 +5,6 @@ import { useAuth } from '../context/AuthContext'
 
 export default function Navigation() {
   const location = useLocation()
-  const navigate = useNavigate()
   const { isAuthenticated } = useAuth()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)

@@ -107,10 +107,6 @@ export default function PodcastDetail() {
     const spotifyUrl = episode.external_urls?.spotify
     const embedUrl = spotifyUrl ? convertToSpotifyEmbed(spotifyUrl) : ''
     
-    if (embedUrl) {
-      setSpotifyEmbedUrl(embedUrl)
-    }
-    
     setCurrentlyPlaying({
       episodeId: episode.id,
       title: episode.name,
